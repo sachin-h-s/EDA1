@@ -10,7 +10,6 @@ st.markdown('''
 
 This is the **EDA App** created in Streamlit using the **pandas-profiling** library.
 
-
 ''')
 
 # Upload CSV data
@@ -27,7 +26,7 @@ if uploaded_file is not None:
         csv = pd.read_csv(uploaded_file)
         return csv
     df = load_csv()
-    pr = df.profile_report()
+    pr = ProfileReport(df)
     st.header('*Input DataFrame*')
     st.title("Pandas Profiling in Streamlit")
     st.write(df)
@@ -44,7 +43,7 @@ else:
             )
             return a
         df = load_data()
-        pr = ProfileReport(df, explorative=True)
+        pr = ProfileReport(df, title='Example Dataset')
         st.header('**Input DataFrame**')
         st.write(df)
         st.write('---')
